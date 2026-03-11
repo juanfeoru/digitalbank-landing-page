@@ -1,0 +1,18 @@
+---
+import { articles } from "../data/articles";
+import ArticleCard from "../components/articles/ArticleCard.astro";
+---
+
+<section class="bg-gray-50 py-16 lg:py-24">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <h2 class="text-blue-950 text-3xl lg:text-4xl mb-10 lg:mb-12 text-center lg:text-left">Latest Articles</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {
+        articles.map((article) => (
+          <ArticleCard {...article} />
+        ))
+      }
+    </div>
+  </div>
+</section>

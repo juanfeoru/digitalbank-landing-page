@@ -1,0 +1,15 @@
+---
+ import { Image } from 'astro:assets'
+
+ const { icon, title, description } = Astro.props
+---
+
+<div class="text-center lg:text-left flex flex-col gap-6">
+  <div class="flex justify-center lg:justify-start">
+    {icon && <Image src={icon} alt="" loading="lazy" />}
+  </div>
+
+  <h3 class="text-blue-950 text-2xl lg:text-3xl font-light">{title}</h3>
+
+  <p class="text-xs lg:text-sm text-gray-600 text-balance leading-relaxed">{description}</p>
+</div>

@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets'
+import imageMockups from "../assets/images/image-mockups.png";
+import bgIntroMobile from "../assets/icons/bg-intro-mobile.svg";
+import bgIntroDesktop from "../assets/icons/bg-intro-desktop.svg";
+import Button from '../components/ui/Button.astro';
+---
+
+<section class="relative bg-gray-50 overflow-hidden lg:grid lg:grid-cols-2 lg:items-center lg:min-h-[650px]">
+  <div class="relative flex justify-center lg:order-2 lg:col-span-1">
+    <!-- Mobile Background -->
+    <Image src={bgIntroMobile} alt="" class="lg:hidden w-full" loading="eager" fetchpriority="high" />
+    <!-- Desktop Background -->
+    <Image src={bgIntroDesktop} alt="" class="hidden lg:block absolute -top-40 -right-20 scale-150 lg:max-w-[500px] lg:-top-2 xl:max-w-[810px]" loading="eager" fetchpriority="high" />
+    <Image src={imageMockups} alt="" class="absolute top-3 z-10 w-[90%] lg:static lg:w-[130%] lg:-mr-32 lg:-mt-24" loading="eager" fetchpriority="high" />
+  </div>
+
+  <div class="text-center lg:text-left my-8 mx-8 lg:mx-0 lg:pl-40 flex flex-col gap-6 lg:order-1 lg:col-span-1 lg:max-w-4xl text-balance lg:z-50">
+    <h1 class="text-blue-950 text-4xl lg:text-5xl leading-tight">Next generation digital banking</h1>
+    <p class="text-sm lg:text-lg text-gray-600 lg:max-w-md">Take your financial life online. Your Digitalbank account will be a one-stop-shop for spending, saving, budgeting, investing, and much more.</p>
+    <div class="flex justify-center lg:justify-start">
+      <Button />
+    </div>
+  </div>
+</section>

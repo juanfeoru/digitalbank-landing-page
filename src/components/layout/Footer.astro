@@ -1,0 +1,62 @@
+---
+import logoLight from '../../assets/icons/logo-light.svg'
+import iconFacebook from '../../assets/icons/icon-facebook.svg'
+import iconYoutube from '../../assets/icons/icon-youtube.svg'
+import iconTwitter from '../../assets/icons/icon-twitter.svg'
+import iconPinterest from '../../assets/icons/icon-pinterest.svg'
+import iconInstagram from '../../assets/icons/icon-instagram.svg'
+import { Image } from 'astro:assets'
+import Button from '../ui/Button.astro'
+
+const socialIcons = [
+  { src: iconFacebook, alt: 'Facebook' },
+  { src: iconYoutube, alt: 'Youtube' },
+  { src: iconTwitter, alt: 'Twitter' },
+  { src: iconPinterest, alt: 'Pinterest' },
+  { src: iconInstagram, alt: 'Instagram' },
+]
+
+const navLinks = [
+  { name: 'About Us', href: '#' },
+  { name: 'Contact', href: '#' },
+  { name: 'Blog', href: '#' },
+  { name: 'Careers', href: '#' },
+  { name: 'Support', href: '#' },
+  { name: 'Privacy Policy', href: '#' },
+]
+---
+
+<footer class="bg-blue-950 py-12 lg:py-16 text-white text-center lg:text-left">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col lg:flex-row lg:justify-between items-center lg:items-start gap-10">
+
+    <!-- Logo and Social -->
+    <div class="flex flex-col items-center lg:items-start justify-between h-full gap-8 lg:gap-12">
+      <a href="/" aria-label="Easybank home">
+        <Image src={logoLight} alt="" />
+      </a>
+      <div class="flex gap-3">
+        {socialIcons.map((icon) => (
+          <a href="#" class="hover:brightness-125 transition-all" aria-label={`Follow us on ${icon.alt}`}>
+            <Image src={icon.src} alt="" class="w-6 h-6 lg:w-5 lg:h-5" />
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Navigation Links -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-x-20 lg:gap-x-32 text-sm">
+      {navLinks.map((link) => (
+        <a href={link.href} class="hover:text-green-500 transition-colors py-1">{link.name}</a>
+      ))}
+    </div>
+
+    <!-- CTA and Copyright -->
+    <div class="flex flex-col items-center lg:items-end gap-6 h-full justify-between">
+      <Button />
+      <p class="text-gray-400 text-xs lg:text-sm mt-2">
+        © Digitalbank. All Rights Reserved
+      </p>
+    </div>
+
+  </div>
+</footer>

@@ -1,0 +1,90 @@
+---
+import logoDark from '../../assets/icons/logo-dark.svg'
+import iconHamburger from '../../assets/icons/icon-hamburger.svg'
+import iconClose from '../../assets/icons/icon-close.svg'
+import MobileNavigation from '../layout/MobileNavigation.astro'
+import Button from '../ui/Button.astro'
+import { Image } from 'astro:assets'
+
+const navLinks = [
+  { name: 'Home', href: '#' },
+  { name: 'About', href: '#' },
+  { name: 'Contact', href: '#' },
+  { name: 'Blog', href: '#' },
+  { name: 'Careers', href: '#' },
+]
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm" role="navigation" aria-label="Main">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
+
+    <div class="">
+      <a href="/" aria-label="Easybank home">
+        <Image src={logoDark} alt="" />
+      </a>
+    </div>
+
+    <!-- Desktop Menu -->
+    <ul class="hidden lg:flex items-center gap-8 h-full" aria-label="Primary navigation">
+      {navLinks.map((link) => (
+        <li class="h-full flex items-center relative group">
+          <a href={link.href} class="text-gray-600 hover:text-blue-950 transition-colors text-sm">
+            {link.name}
+          </a>
+          <div class="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-green-500 to-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+        </li>
+      ))}
+    </ul>
+
+    <!-- Desktop CTA -->
+    <div class="hidden lg:block">
+      <Button />
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button 
+      id="menu-btn" 
+      class="lg:hidden p-2" 
+      aria-expanded="false" 
+      aria-controls="mobile-menu" 
+      aria-label="Toggle mobile menu"
+    >
+      <Image id="menu-icon" src={iconHamburger} alt="" data-open={iconClose.src} data-close={iconHamburger.src} />
+    </button>
+  </div>
+</nav>
+
+<MobileNavigation />
+
+<div id="overlay" class="fixed inset-0 bg-linear-to-b from-blue-950/60 to-transparent z-40 hidden" aria-hidden="true"></div>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('overlay');
+  const icon = document.getElementById('menu-icon') as HTMLImageElement | null;
+  const body = document.body;
+
+  let open = false;
+
+  btn?.addEventListener('click', () => {
+    open = !open;
+
+    menu?.classList.toggle('hidden')
+    overlay?.classList.toggle('hidden')
+    body.classList.toggle('overflow-hidden')
+    
+    // Update ARIA state
+    if (btn) {
+      btn.setAttribute('aria-expanded', open.toString());
+    }
+
+    if (icon) {
+      const openIcon = icon.getAttribute('data-open');
+      const closeIcon = icon.getAttribute('data-close');
+      if (openIcon && closeIcon) {
+        icon.src = open ? openIcon : closeIcon
+      }
+    }
+  })
+</script>

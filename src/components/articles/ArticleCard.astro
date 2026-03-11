@@ -1,0 +1,27 @@
+---
+const { image, author, title, description } = Astro.props
+import { Image } from 'astro:assets'
+---
+
+<div class="bg-white rounded-lg overflow-hidden flex flex-col group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
+  <div class="aspect-video overflow-hidden">
+    <Image 
+      src={image} 
+      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" 
+      alt={`Article: ${title}`}
+      loading="lazy"
+    />
+  </div>
+
+  <div class="p-6 flex flex-col gap-2">
+    <span class="text-xs text-gray-600">By {author}</span>
+
+    <h3 class="text-blue-950 text-pretty text-base font-light group-hover:text-green-500 transition-colors leading-tight">
+      {title}
+    </h3>
+
+    <p class="text-xs text-pretty text-gray-600 leading-normal line-clamp-4">
+      {description}
+    </p>
+  </div>
+</div>
